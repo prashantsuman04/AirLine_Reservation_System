@@ -95,7 +95,7 @@ class SearchFlight extends Component {
                         
                     <div className="input-group mb-2 mr-sm-2">    
                         <input className="my-1 p-2 border border-darken-2 rounded" type="date" value={this.state.travelDate}
-                        name="travelDate" onChange={this.handleInput} required />
+                        name="travelDate" onChange={this.handleInput} required min="2022-09-28"/>
                     </div>
                     <button onClick={this.getFlightsList} className="btn mb-2 mr-sm-2" style={styling.icon}>
                         <img src={search} height="25" />

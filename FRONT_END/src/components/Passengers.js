@@ -32,7 +32,8 @@ class Passengers extends Component {
     }
 
     /** this handle event method add a single passenger at a time in array*/
-    handleClick = (id) => {
+    handleClick = (e) => {
+        e.preventDefault()
         this.values.push({"id":this.state.id++ ,"pname":this.state.pname, "gender":this.state.gender, "age":this.state.age})
         console.log("Values :"+ JSON.stringify(this.values.length))
         this.setState({info:true})
@@ -88,7 +89,7 @@ class Passengers extends Component {
                 onChange={e => this.setState({age:e.target.value})} maxLength="2" />
             </td>
             <td align='center'>
-                <button disabled={this.state.btn} class="btn btn-warning " onClick={() => this.handleClick(i)}>Add Passenger</button>
+                <button disabled={this.state.btn} class="btn btn-warning " onClick={(e) => this.handleClick(e)}>Add Passenger</button>
             </td>
         </tr>
       );
@@ -132,9 +133,9 @@ class Passengers extends Component {
                                         </tbody>
 
                                     </table>
-                                    <div class="checkbox">
+                                    {/* <div class="checkbox">
                                         <label><input type="checkbox" value="" required />&nbsp; <a href="#" data-toggle="modal" data-target="#myModal">Agree Terms and Conditions</a></label>
-                                    </div>
+                                    </div> */}
                                     <div class="card-footer"> 
                                         <button onClick={this.savePassenger} type="button" disabled={!this.state.btn} class="subscribe btn btn-primary btn-block shadow-sm"> Book Ticket</button>
                                     </div>
@@ -157,7 +158,7 @@ class Passengers extends Component {
 <br></br>
                                                 2. Passengers to familiarize and follow the social distancing norms as required at the airport premises.
 <br></br>
-                                                3. Entry into the airport terminal will be permitted only with suitable PPE, at least with a face mask.
+                                                3. Entry into the airport terminal will be permitted only with with a face mask.
 <br></br>
                                                 4. Follow all self sanitisation norms, as applicable, at the airport.
 <br></br>

@@ -62,14 +62,15 @@ class Ticket extends Component {
      * takes user data from local storage
     */
     onMail = () => {
-
+          
+        
         let msg = 'Your ticket is Confirmed with number : ' + this.ticket.ticketNumber;
         let src = 'Source : ' + this.ticket.booking.flight.source;
         let dst = 'Destination : ' + this.ticket.booking.flight.destination;
         let travel_date = 'Travel Date : ' + this.ticket.booking.flight.travelDate;
 
         let tosend = {
-                from_name: 'Hawk Airways',
+                from_name: 'AirLine Ticket Reservation System',
                 to_name: JSON.parse(localStorage.getItem('user')).fname,
                 message: msg,
                 source : src,
@@ -86,6 +87,7 @@ class Ticket extends Component {
             .then((response) => {
               console.log('SUCCESS!', response.status, response.text);
               alert('Your ticket details has been emailed !!')
+              this.props.history.push('/feedback')
             })
             .catch((err) => {
               console.log('FAILED...', err);

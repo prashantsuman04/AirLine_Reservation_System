@@ -13,8 +13,8 @@ class Seats extends Component {
 
   /** Shows alert message and redirects to Feedback component */
     greetUser = () => {
-        alert('Seats booked Successfully! \r\n Leave Feedback')
-        this.props.history.push('/feedback')
+        alert('Seats booked Successfully! ')
+        this.props.history.push('/ticket')
       }
 
     componentDidMount(){

@@ -24,6 +24,7 @@ export default class Register extends Component {
 			password:"",
 			isadmin:0
 		}
+		//this.validPassword = new RegExp('^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$');
 	}
 
 	componentDidMount(){
@@ -31,6 +32,7 @@ export default class Register extends Component {
 	}
 
 	handleInput=(event)=>{
+		
 		const name=event.target.name;
 		const value=event.target.value;
 		this.setState({
@@ -54,8 +56,17 @@ export default class Register extends Component {
 	 * this method interacts with service to register new user
 	 * redirects to login page
 	*/
-	registerUser = () =>{
+	registerUser = (e) =>{
 		//alert('willing to register');
+		e.preventDefault()
+		if(this.state.fname.length === 0){window.alert("Please Enter Your Name")}
+		else if(this.state.email.length === 0){window.alert("Please Enter Your Email")}		
+		else if(!(new RegExp('.+\@.+\..+')).test(this.state.email)){window.alert("Please Enter Valid Email")}		
+		else if(this.state.password.length === 0){window.alert("Please Enter Your Password")}		
+		//else if(!(new RegExp('^(?=.?[A-Za-z])(?=.?[0-9]).{6,}$')).test(this.state.password)){window.alert("password must contain 1 number (0-9)\n password must contain 1 uppercase letters \n password must contain 1 lowercase letters \n password must contain 1 non-alpha numeric number (#?!@$%^&*-) \n password must be of more than 8 characters with no space")}	
+		else if(this.state.phone.length !== 10){window.alert("Please Enter Your Phone Number")}	
+
+		else{
 		console.log(this.state);
 		this.service.addUser(this.state).then(response=>{
 			if(response.status===200){
@@ -64,7 +75,7 @@ export default class Register extends Component {
 			}
 		}).catch(error=>{
 			console.log(error);
-			alert('Registration failed');
+			alert('This Email Is Already Registered');
 		});
 		this.setState({userId:0,
 		fname:"",
@@ -73,7 +84,7 @@ export default class Register extends Component {
 		username:"",
 		password:"",
 		isadmin:0
-	});
+	});}
 		
 	}
 
@@ -107,7 +118,7 @@ export default class Register extends Component {
 								</div>
                                 <div className="form-group"> 
 									<h6><span className="form-label">Contact</span></h6>
-										<input  name="phone" pattern="[6-9][0-9]{9}" maxLength="10" value={this.state.phone} onChange={this.handleInput} required className="form-control" />
+										<input  name="phone" pattern="[6-9][0-9]{9}" minLength="10" maxLength="10" value={this.state.phone} onChange={this.handleInput} required className="form-control" />
 								</div>
                                 <div className="form-group"> 
 									<h6><span className="form-label">Username</span></h6>
@@ -119,11 +130,11 @@ export default class Register extends Component {
 								</div>
                                 <div className="form-group"> 
 									<h6><span className="form-label">Confirm Password</span></h6>
-										<input type="text" name="cpasswd" onChange={this.handlePass} className="form-control" required/><div className="text-danger">{this.state.cp} </div> 
+										<input type="password" name="cpasswd" onChange={this.handlePass} className="form-control" required/><div className="text-danger">{this.state.cp} </div> 
 								</div>
                                 
                                 <div className="card-footer"> 
-								<button onClick={this.registerUser}  className="subscribe btn btn-primary btn-block shadow-sm" disabled={!this.state.flag}>Register</button>
+								<button onClick={this.registerUser}  className="subscribe btn btn-primary btn-block shadow-sm" >Register</button> 
 								
 								</div>      
                             </form>
@@ -146,3 +157,5 @@ export default class Register extends Component {
     );
 	}
 }
+
+////disabled={!this.state.flag}
