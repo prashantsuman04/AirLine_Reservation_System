@@ -33,8 +33,6 @@ Images are for personal use only and a big credit to Flaticons
 6. User can either print the ticket and mail the ticket.
 7. User can choose the seat after ticket generation.
 
-## Preview
-<img src="src/assets/images/home.jpg" width="700px" height="450px"></img>
 
 ## How To Install.
 
