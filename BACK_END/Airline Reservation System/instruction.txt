@@ -7,7 +7,7 @@ working in your system or not (all the instructions are given in controller of p
 NOTE:- Please read the all instructions carefully
 
 Git Commands:-
-1. git clone https://github.com/rocking-reacts/BookMyFlight.git [Do it once]
+1. git clone https://github.com/prashantsuman04/AirLine_Reservation_System [Do it once]
 
 Everytime
 1. git pull origin master/your_branch_name
